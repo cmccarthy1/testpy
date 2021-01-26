@@ -1,0 +1,32 @@
+Development Status :: 3 - Alpha
+Environment :: Console
+Environment :: Other Environment
+Framework :: Flake8
+Framework :: Pytest
+Framework :: Sphinx
+Framework :: tox
+Intended Audience :: Developers
+Intended Audience :: Financial and Insurance Industry
+Intended Audience :: Healthcare Industry
+Intended Audience :: Information Technology
+Intended Audience :: Manufacturing
+Intended Audience :: Other Audience
+Intended Audience :: Science/Research
+Intended Audience :: Telecommunications Industry
+# TODO: Add a licence
+Operating System :: POSIX :: Linux
+Programming Language :: Cython
+Programming Language :: Other
+Programming Language :: Other Scripting Engines
+Programming Language :: Python :: 3.6
+Programming Language :: Python :: 3.7
+Programming Language :: Python :: 3 :: Only
+Programming Language :: Python :: Implementation
+Programming Language :: Python :: Implementation :: CPython
+Topic :: Database
+Topic :: Database :: Database Engines/Servers
+Topic :: Database :: Front-Ends
+Topic :: Software Development
+Topic :: Software Development :: Interpreters
+Topic :: Software Development :: Libraries
+Typing :: Typed
