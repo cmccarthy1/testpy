@@ -1,0 +1,42 @@
+stage: standalone
+language: c
+os:
+- linux
+git:
+  depth: 1
+
+jobs:
+  include:
+    - &conda_build
+      stage: deploy_target
+      env:
+        - TARGET=conda
+      os:
+        - linux
+      before_install: skip
+      install:
+        - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
+           wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
+          else
+           wget https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh -O miniconda.sh;
+          fi
+        - bash miniconda.sh -b -p $HOME/miniconda
+        - export PATH="$HOME/miniconda/bin:$PATH"
+        - hash -r
+        - conda config --set always_yes yes --set changeps1 no
+        - conda install -q "conda-build"
+      script:
+        - QLIBDIR=l64
+	- export QLIBDIR
+        - if [[ "x$QLIC_KC" != "x" ]]; then mkdir -p q; echo -n $QLIC_KC |base64 --decode > q/kc.lic; export QLIC=$($PREFIX)/q; fi
+        - export QTESTPY_VERSION=$TRAVIS_BRANCH
+        - conda build conda-recipe --output -c cmccarthy1_kx > packagenames.txt
+        - conda build -c cmccarthy1_kx conda-recipe --no-long-test-prefix
+      deploy:
+        provider: script
+        script:
+          - build/anaconda_upload.sh
+        skip_cleanup: true
+        on:
+          tags: true
+          condition: $TRAVIS_BRANCH =~ ^[0-9]+\.

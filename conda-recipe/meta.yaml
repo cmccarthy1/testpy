@@ -1,0 +1,24 @@
+package:
+  name: qtestpy
+  version: {{ environ.get('QTESTPY_VERSION', 'noversion') }}
+
+source:
+  path: ..
+
+build:
+  detect_binary_files_with_prefix: False
+  script_env:
+    QLIC
+
+requirements:
+  build:
+    - python
+    - pip
+    - {{ compiler('c') }}
+  run:
+    - python
+
+about:
+  home: https://github.com/cmccarthy1/qtestpy
+  summary: Test installation functionality
+
