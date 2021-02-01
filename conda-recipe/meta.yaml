@@ -11,10 +11,9 @@ build:
     QLIC
 
 requirements:
-  build:
+  host:
     - python
-    - pip
-    - {{ compiler('c') }}
+    - pip 
   run:
     - python
 
